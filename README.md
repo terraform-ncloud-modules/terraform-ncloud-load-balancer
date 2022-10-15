@@ -27,7 +27,7 @@ variable "load_balancers" {
                                                    // Only SMALL can be selected when type is NETWORK and network_type is PRIVATE
     idle_timeout = optional(number, 60)            // 60 (default)
 
-    listeners = list(object({
+    listeners = optional(list(object({
       protocol          = string                   // TCP (when type is NETWORK), TCP/TLS (when type is NETWORK_PROXY), HTTP/HTTPS (when type is APPLICATION)
       port              = number
       target_group_name = string
@@ -38,7 +38,7 @@ variable "load_balancers" {
 
       // The property below are valid only when the listener protocol is HTTPS
       use_http2            = optional(bool, false)          // false (default)
-    }))
+    })), [])
   }))
   default = []
 }
