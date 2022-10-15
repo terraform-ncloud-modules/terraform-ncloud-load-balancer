@@ -35,6 +35,8 @@ variable "load_balancers" {
       // The properties below are valid only when the listener protocol is HTTPS or TLS.
       ssl_certificate_no   = optional(string, null)
       tls_min_version_type = optional(string, "TLSV10")     // TLSV10 (default) | TLSV11 | TLSV12
+
+      // The property below are valid only when the listener protocol is HTTPS
       use_http2            = optional(bool, false)          // false (default)
     }))
   }))
@@ -75,8 +77,6 @@ load_balancers = [
         port                 = 443
         target_group_name    = "tg-foo-proxy-tcp"
         ssl_certificate_no   = "7589"
-        tls_min_version_type = "TLSV12"
-        use_http2            = true
       }
     ]
   },
@@ -98,10 +98,12 @@ load_balancers = [
         target_group_name = "tg-foo-http"
       },
       {
-        protocol           = "HTTPS"
-        port               = 443
-        target_group_name  = "tg-foo-https"
-        ssl_certificate_no = "7589"
+        protocol             = "HTTPS"
+        port                 = 443
+        target_group_name    = "tg-foo-https"
+        ssl_certificate_no   = "7589"
+        tls_min_version_type = "TLSV12"
+        use_http2            = true
       }
     ]
   },

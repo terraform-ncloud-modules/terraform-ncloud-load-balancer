@@ -49,5 +49,5 @@ resource "ncloud_lb_listener" "lb_listeners" {
 
   tls_min_version_type = (var.listeners[count.index].protocol == "TLS") || (var.listeners[count.index].protocol == "HTTPS") ? var.listeners[count.index].tls_min_version_type : null
   ssl_certificate_no   = (var.listeners[count.index].protocol == "TLS") || (var.listeners[count.index].protocol == "HTTPS") ? var.listeners[count.index].ssl_certificate_no : null
-  use_http2            = (var.listeners[count.index].protocol == "TLS") || (var.listeners[count.index].protocol == "HTTPS") ? var.listeners[count.index].use_http2 : null
+  use_http2            = (var.listeners[count.index].protocol == "HTTPS") ? var.listeners[count.index].use_http2 : null
 }
