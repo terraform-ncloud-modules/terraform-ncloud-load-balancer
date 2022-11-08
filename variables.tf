@@ -20,9 +20,29 @@ variable "network_type" {
   default     = "PUBLIC"
 }
 
+variable "vpc_name" {
+  description = "(Required) See the description in the readme"
+  type        = string
+  default     = null
+}
+
+variable "subnet_names" {
+  description = "(Required) See the description in the readme"
+  type        = list(any)
+  default     = null
+}
+
+
 variable "subnet_no_list" {
   description = "(Required) See the description in the readme"
   type        = list(any)
+  default     = null
+}
+
+variable "subnet_ids" {
+  description = "(Required) See the description in the readme. Same with subnet_no_list"
+  type        = list(any)
+  default     = null
 }
 
 variable "throughput_type" {
